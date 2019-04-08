@@ -47,6 +47,7 @@ def turn(board)
   i = gets.chomp
   
   if valid_move?(board, input_to_index(i)) 
+    puts "Yes"
   end
     
   
