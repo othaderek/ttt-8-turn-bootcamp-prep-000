@@ -34,7 +34,6 @@ end
 def input_to_index(i)
   i = i.to_i
   index = i - 1
-  valid_move?(board, index)
   
 end
 
