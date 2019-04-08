@@ -31,15 +31,20 @@ def position_taken?(board, index)
   
 end
 
-def move(board, index, token ='X')
+def input_to_index(i)
+  i = i.to_i
+  index = i - 1
   
 end
 
+def move(board, index, player= "X")
+  board[index] = player
+end
+
+
 def turn(board)
   puts "Please enter 1-9:"
-  input = gets.chomp
-  i =  input.to_i
-  index = i - 1
+  
   if valid_move?(board, index) == true
   end
     
