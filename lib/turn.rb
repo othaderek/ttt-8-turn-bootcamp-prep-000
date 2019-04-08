@@ -1,76 +1,53 @@
-def display_board(array)
-  puts " #{array[0]} | #{array[1]} | #{array[2]} "
+
+def display_board(board)
+  puts " #{board[0]} | #{board[1]} | #{board[2]} "
   puts "-----------"
-  puts " #{array[3]} | #{array[4]} | #{array[5]} "
+  puts " #{board[3]} | #{board[4]} | #{board[5]} "
   puts "-----------"
-  puts " #{array[6]} | #{array[7]} | #{array[8]} "
+  puts " #{board[6]} | #{board[7]} | #{board[8]} "
 end
 
-def input_to_index(string)
-  return string.to_i - 1
-end
 
-def position_taken?(array, index)
-  if (array[index] == " " || array[index] == "" || array[index] == nil)
+
+def valid_move?(board, index)
+  if index.between?(0, 8) && position_taken?(board, index) == true
     return false
-  else
+    elsif index.between?(0, 8)
     return true
+    elsif index > 8 
+    return false
+    elsif position_taken?(board, index)
+    return nil
   end
 end
 
-def valid_move?(array, index)
-  if (index < 0 || index > 8)
+
+def position_taken?(board, index)
+  if board[index] == "" || board[index] == " " || board[index] == nil
     return false
-  elsif position_taken?(array, index)
-    return false
-  else
+    elsif board[index] == "X" || board[index] == "O"
     return true
-  end
+  end 
+  
 end
 
-def move(array, index, char = "X")
-  if ( valid_move?(array, index) )
-    array[index] = char
-    return array
-  else
-    #do nothing
-  end
+def input_to_index(i)
+  i = i.to_i
+  index = i - 1
+  
 end
+
+def move(board, index, player= "X")
+  board[index] = player
+end
+
 
 def turn(board)
   puts "Please enter 1-9:"
-  input = gets.strip
-  puts input
+  i = gets.chomp
+  if valid_move?(board, input_to_index(i)) == true
+    move(board, input_to_index(i), player= "X")
+    puts board
+  
 end
-
-board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
- 
-puts "Welcome to Tic Tac Toe!"
-
-move(board, 4, "O")
-move(board, 4, "X")
-move(board, 5, "X")
-move(board, 5, "O")
-
-display_board(board)
-
-turn(board)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
