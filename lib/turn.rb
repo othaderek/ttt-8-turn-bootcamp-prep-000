@@ -1,54 +1,38 @@
+def input_to_index(input)
+  input.to_i - 1
+end 
+
+#if index is valid...
+def valid_move?(number_entered, board)
+  number_entered.between?(0, 8) && !(position_taken?(board, number_entered))
+end
+#if index is valid...make the move for index
+def move(array, index, name = "X")
+  array[index] = name
+end
+#if index is valid...show the board
+def position_taken?(board, answer)
+  board[answer] != " " 
+end
 
 def display_board(board)
-  puts " #{board[0]} | #{board[1]} | #{board[2]} "
-  puts "-----------"
-  puts " #{board[3]} | #{board[4]} | #{board[5]} "
-  puts "-----------"
-  puts " #{board[6]} | #{board[7]} | #{board[8]} "
+   puts " #{board[0]} | #{board[1]} | #{board[2]} "
+   puts "-----------"
+   puts " #{board[3]} | #{board[4]} | #{board[5]} "
+   puts "-----------"
+   puts " #{board[6]} | #{board[7]} | #{board[8]} "
 end
 
-
-
-def valid_move?(board, index)
-  if index.between?(0, 8) && position_taken?(board, index) == true
-    return false
-    elsif index.between?(0, 8)
-    return true
-    elsif index > 8 
-    return false
-    elsif position_taken?(board, index)
-    return nil
-  end
-end
-
-
-def position_taken?(board, index)
-  if board[index] == "" || board[index] == " " || board[index] == nil
-    return false
-    elsif board[index] == "X" || board[index] == "O"
-    return true
-  end 
-  
-end
-
-def input_to_index(i)
-  i = i.to_i
-  index = i - 1
-  
-end
-
-def move(board, index, player= "X")
-  board[index] = player
-end
-
-
+#this method need to be developed ________________
 def turn(board)
-  puts "Please enter 1-9:"
-  i = gets.chomp
-  if valid_move?(board, input_to_index(i)) == true
-    move(board, input_to_index(i), player= "X")
-    puts board
-  end
-  
+    puts "Please enter 1-9:"
+    answer = gets.chomp
+    answer = input_to_index(answer)
+    if valid_move?(answer, board)
+      move(board, answer)
+      puts display_board(board)
+    else
+      puts "That is an invalid entry!"
+      turn(board)
+    end 
 end
-
