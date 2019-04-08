@@ -50,7 +50,7 @@ def turn(board)
     move(board, input_to_index(i), player= "X")
     puts board
   else
-    turn(board) until 
+    turn(board)  
   end
     
   
